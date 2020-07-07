@@ -60,6 +60,9 @@ int main() {
   // 投げた文字列分が全部帰ってくるまで残業
   while(totalRecvSize < echoLength) {
 
+    // 念のために初期化
+    memset(buffer, 0x00, RECV_BUFFER_SIZE);
+
     // recvしたらバッファの中身は綺麗になるはず
     if( ( oneTimeRecvSize = recv(sock, buffer, RECV_BUFFER_SIZE - 1, 0) ) <= 0 ) {
       close(sock);

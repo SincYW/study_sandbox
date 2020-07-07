@@ -38,6 +38,9 @@ void recvClientData(int clientSockFd) {
   // メッセージを受信し続ける
   while( 0 < recvSize ) { // 受信サイズが０になった時点でデータの受取は終了
 
+    // 念のために初期化
+    memset(buffer, 0x00, RECV_BUFF_SIZE);
+
     // もらったデータを、熨斗をつけて返す
     if ( send(clientSockFd, buffer, recvSize, 0) != recvSize ) {
       close(clientSockFd);
